@@ -3,10 +3,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 from sklearn.metrics import classification_report
+import os
 
-scims_file = "./results/scims/simulation_metadata_scims_updated.txt"
-rxry_file = "./results/simulation_rxry_output.txt"
-bexy_file = "./bexy_output/simulation_bexy_output_0.95.txt"
+scims_file = "01_simulation/results/simulation_metadata_scims_updated.txt"
+rxry_file = "01_simulation/results/simulation_rxry_output.txt"
+bexy_file = "01_simulation/bexy_output/simulation_bexy_output_0.95.txt"
+
+if not os.path.isdir('./figures'):
+    os.mkdir('./figures')
 
 scims = pd.read_csv(scims_file, sep="\t")
 scims.rename(columns={'Run': 'Sample'}, inplace=True)
