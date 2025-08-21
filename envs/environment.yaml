@@ -9,3 +9,7 @@ dependencies:
   - wget
   - pip:
     - git+https://github.com/hanhntran/SCiMS-v1.1
+  - matplotlib
+  - numpy
+  - seaborn
+  - scikit-learn
