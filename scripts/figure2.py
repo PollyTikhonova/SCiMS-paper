@@ -4,6 +4,7 @@ import numpy as np
 import seaborn as sns
 from sklearn.metrics import classification_report
 import os
+from numpy import nan
 
 scims_file = "01_simulation/results/simulation_metadata_scims_updated.txt"
 rxry_file = "01_simulation/results/simulation_rxry_output.txt"
@@ -45,7 +46,7 @@ for index, row in rxry_merged.iterrows():
     try:
         # Check if the value is a string before applying strip
         if isinstance(row['Rx 95% CI'], str):
-            ci_low_rx, ci_high_rx = map(float, row['Rx 95% CI'].strip('()').split(', '))
+            ci_low_rx, ci_high_rx = eval(row['Rx 95% CI'])
             if ci_low_rx > 0.8:
                 inferred_sex_Rx.append('female')
             elif ci_high_rx < 0.6:
@@ -64,7 +65,7 @@ for index, row in rxry_merged.iterrows():
     try:
         # Check if the value is a string before applying strip
         if isinstance(row['Ry 95% CI'], str):
-            ci_low_ry, ci_high_ry = map(float, row['Ry 95% CI'].strip('()').split(', '))
+            ci_low_ry, ci_high_ry = eval(row['Rx 95% CI'])
             if ci_low_ry > 0.077:
                 inferred_sex_Ry.append('male')
             elif ci_high_ry < 0.016:
