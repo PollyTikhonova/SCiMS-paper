@@ -7,22 +7,19 @@ METADATA="./data/simulation_metadata.tsv"
 SCAFFOLDS="./data/ref_genome/GRCh38_scaffolds.txt"
 OUTPUT_DIR="./01_simulation/results"
 IDXSTATS_DIR="./01_simulation/mapped_reads"
-MASTER_RXRY_OUTPUT="${OUTPUT_DIR}/simulation_rxry_output.txt"
+RXRY_OUTPUT="${OUTPUT_DIR}/simulation_rxry_output.txt"
 SYSTEM="XY"
 
 # Ensure output directory exists
 mkdir -p ${OUTPUT_DIR}
 
-# Generate master idxstats file list
-ls ${IDXSTATS_DIR}/*.1000x.idxstats > ${OUTPUT_DIR}/simulation_master.txt
-
 # Run RxRy analysis
 python3 ${RXRY_SCRIPT} \
     --scaffolds ${SCAFFOLDS} \
-    --metadata ${METADATA} \
-    --master_file ${OUTPUT_DIR}/simulation_master.txt \
+    --idxstats_dir ${IDXSTATS_DIR} \
     --system XY \
     --homogametic_id NC_000023.11 \
     --heterogametic_id NC_000024.10 \
-    --output ${MASTER_RXRY_OUTPUT} \
+    --output ${RXRY_OUTPUT} \
     --threshold ${THRESHOLD}
+

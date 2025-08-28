@@ -14,4 +14,3 @@ scaffolds="data/ref_genome/GRCh38_scaffolds.txt"
 
 # generate bexy output in R
 Rscript ./scripts/bexy.R ${OUTPUT_DIR}/
-
